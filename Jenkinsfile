@@ -1,13 +1,16 @@
-pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                docker.image('nginx:latest').inside {
-                    sh 'cp C:/Users/cinna/OneDrive/Desktop/SIT753_Professional Practice in Information Technology/753OnTrack/6.2HD Create your DevOps Pipeline/task_6.2HD/index.html /usr/share/nginx/html/'
-                }
-            }
-        }
+node {
+    def app
+
+    stage('Clone repository') {
+        /* Let's make sure we have the repository cloned to our workspace */
+
+        checkout scm
+    }
+
+    stage('Build image') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
+
+        app = docker.build("webimage:latest")
     }
 }
-
