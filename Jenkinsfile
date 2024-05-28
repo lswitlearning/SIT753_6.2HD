@@ -31,6 +31,5 @@ pipeline {
             steps {
                 bat "mvn -D clean test"
             }
-
     }
 }
