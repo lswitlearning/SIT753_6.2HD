@@ -19,18 +19,15 @@ pipeline {
             }
         }
 
-stage('Run container') {
-    steps {
-        script {
-            // 使用 PowerShell 命令获取要停止的容器 ID
-            def containerIds = powershell(script: 'docker ps -q --filter "ancestor=webimage:latest"', returnStdout: true).trim().split("\\r?\\n")
-
-            // 停止容器
-            for (containerId in containerIds) {
-                bat "docker stop ${containerId}"
+                stage('Run container') {
+            steps {
+                /* This runs the built image with port mapping; synonymous to
+                 * docker run -p 80:80 webimage:latest on the command line */
+                script {
+                    app.run("-p 80:80")
+                }
             }
         }
-    }
 }
 
 
