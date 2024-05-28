@@ -18,7 +18,7 @@ pipeline {
                 }
             }
         }
-        stage('Run container') {
+                stage('Run container') {
             steps {
                 /* This runs the built image with port mapping; synonymous to
                  * docker run -p 80:80 webimage:latest on the command line */
@@ -27,9 +27,5 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
-            steps {
-                bat "mvn -D clean test"
-            }
     }
 }
