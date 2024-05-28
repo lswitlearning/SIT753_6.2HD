@@ -14,3 +14,8 @@ node {
         app = docker.build("webimage:latest")
     }
 }
+   stage('run image') {
+            steps {
+                sh 'docker run -p 80:80 webimage:latest'
+            }
+   }
