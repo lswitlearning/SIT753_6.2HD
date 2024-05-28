@@ -22,15 +22,17 @@ pipeline {
 stage('Run container') {
     steps {
         script {
-            // 停止并删除之前运行的容器，避免端口冲突
-            bat 'for /F "tokens=*" %i IN (\'docker ps -q --filter "ancestor=webimage:latest"\') DO docker stop %i'
-            bat 'for /F "tokens=*" %i IN (\'docker ps -aq --filter "ancestor=webimage:latest"\') DO docker rm %i'
-            
-            // 运行新的容器
-            app.run("-p 80:80")
+            // 使用 PowerShell 命令获取要停止的容器 ID
+            def containerIds = powershell(script: 'docker ps -q --filter "ancestor=webimage:latest"', returnStdout: true).trim().split("\\r?\\n")
+
+            // 停止容器
+            for (containerId in containerIds) {
+                bat "docker stop ${containerId}"
+            }
         }
     }
 }
+
 
 
  
