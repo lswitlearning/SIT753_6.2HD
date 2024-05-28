@@ -18,7 +18,15 @@ pipeline {
                 }
             }
         }
+                stage('Run container') {
+            steps {
+                /* This runs the built image with port mapping; synonymous to
+                 * docker run -p 80:80 webimage:latest on the command line */
+                script {
+                    app.run("-p 80:80")
+                }
+            }
+        }
     }
 }
-
 
