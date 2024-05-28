@@ -1,5 +1,5 @@
-node {
-    def app
+pipeline {
+    agent any
 
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
@@ -14,8 +14,4 @@ node {
         app = docker.build("webimage:latest")
     }
 }
-   stage('run image') {
-            steps {
-                sh 'docker run -p 80:80 webimage:latest'
-            }
-   }
+
