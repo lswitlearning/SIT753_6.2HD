@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Cool math for kids</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+    crossorigin="anonymous">
+  <style>
+    .nav-link {
+      color: white
+    }
+
+    .custom-spacing {
+      line-height: 2.5
+    }
+
+    .rainbow-text {
+      background-image: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+  </style>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container justify-content-center">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#a">Introduction</a></li>
+        <li class="nav-item"><a class="nav-link" style="margin-left: 35px;" href="#b">Calculator</a></li>
+        <li class="nav-item"><a class="nav-link" href="#c" tabindex="-1" aria-disabled="true"
+            style="margin-left: 35px;">About Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <div id=a class="bg-primary-subtle">
+    <div class="container">
+      <h1 class="custom-spacing text-center rainbow-text">Welcome to the Maths World For Kids</h1>
+      <p class="custom-spacing text-center">The power of learning by doing. </p>
+    </div>
+  </div>
+
+  <section id="a" class="container">
+    <h2>Introduction</h2>
+    <p>Welcome to Cool Math for Kids!</p>
+    <p>Our mission is to make learning math fun and engaging for children of all ages. We believe that math is not just
+      about memorizing numbers and formulas, but it's a way of thinking and problem-solving that can be enjoyable and
+      rewarding.</p>
+    <p>In our interactive learning environment, children can explore various math concepts through hands-on activities,
+      games, and puzzles. Whether they are learning basic arithmetic, geometry, or advanced algebra, our goal is to
+      spark their curiosity and ignite their passion for learning.</p>
+    <p>Join us on this exciting mathematical journey, where learning is not only educational but also incredibly fun!
+    </p>
+    <div class="text-end">
+      <a href="#top">Back to Top</a>
+    </div>
+  </section>
+
+  <section id="b" class="container">
+    <h2>Addition Calculator for Kids</h2>
+    <p class="text-primary">With our fun and colorful calculator, children can practice their addition skills in an
+      enjoyable way. Simply enter two numbers into the input fields below and click the "Calculate" button to see the
+      sum. It's that easy!</p>
+    <div class="row mt-4">
+      <div class="col-md-2">
+        <input type="number" id="number1" class="form-control mb-3" placeholder="NUM1">
+      </div>
+      <div class="col-md-1 d-flex align-items-center justify-content-center">
+        <span class="plus-sign"> + </span>
+      </div>
+      <div class="col-md-2">
+        <input type="number" id="number2" class="form-control mb-3" placeholder="NUM2">
+      </div>
+      <div class="col-md-1 d-flex align-items-center justify-content-center">
+        <span class="equal-sign"> = </span>
+      </div>
+      <div class="col-md-4">
+        <input type="text" id="result" class="form-control mb-3" placeholder="Result" disabled>
+      </div>
+    </div>
+
+    <div class="col-md-12 d-flex justify-content-center">
+      <button onclick="calculateSum()" class="btn btn-warning">Calculate</button>
+      <button onclick="clearFields()" class="btn btn-secondary" style="margin-left: 25px;">Clear</button>
+    </div>
+
+    <div class="text-end">
+      <a href="#top" class="text-primary">Back to Top</a>
+    </div>
+  </section>
+
+
+  <section class="container">
+    <h2 id="c">Embark on a Counting Adventure with Counting Fun!</h2>
+    <P>Welcome to Counting Fun, where learning to count becomes an adventure! At Counting Fun, we believe that counting
+      isn't just about numbers; it's a journey of exploration and excitement for young minds. Through vibrant visuals,
+      interactive games, and engaging activities, we aim to ignite children's curiosity and foster a love for numbers.
+      From counting colorful objects to mastering addition and subtraction, our platform offers a dynamic learning
+      environment where every count is an opportunity for discovery and growth. Join us as we embark on an exciting
+      journey through the world of numbers, making learning counting an enjoyable and rewarding experience for children
+      of all ages!</P>
+    <div class="row mt-4">
+      <div class="col-md-4">
+        <img src="a1.jpg" alt="Butterfly 1" class="img-thumbnail img-fluid">
+      </div>
+      <div class="col-md-4">
+        <img src="a2.jpg" alt="Butterfly 2" class="img-thumbnail img-fluid">
+      </div>
+      <div class="col-md-4">
+        <img src="a3.jpg" alt="Butterfly 3" class="img-thumbnail img-fluid">
+      </div>
+    </div>
+    <div class="text-end">
+      <a href="#top">Back to Top</a>
+    </div>
+  </section>
+
+  </section>
+
+  <footer class="bg-dark text-white py-4 text-center">
+    <div class="container">
+      <i>Copyright &copy; 2024 MathsKids Software Systems Pty Ltd.</i>
+    </div>
+  </footer>
+
+  <script>
+    function calculateSum() {
+      // Get the values entered by the user
+      var num1 = parseFloat(document.getElementById('number1').value);
+      var num2 = parseFloat(document.getElementById('number2').value);
+
+      // Check if both inputs are valid numbers
+      if (isNaN(num1) || isNaN(num2)) {
+        document.getElementById('result').value = "Please enter valid numbers.";
+        return;
+      }
+
+      // Calculate the sum
+      var sum = num1 + num2;
+
+      // Display the sum
+      document.getElementById('result').value = sum;
+    }
+
+    function clearFields() {
+      document.getElementById('number1').value = '';
+      document.getElementById('number2').value = '';
+      document.getElementById('result').value = '';
+    }
+
+
+  </script>
+
+</body>
+
+</html>
