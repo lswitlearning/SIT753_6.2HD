@@ -1,17 +1,24 @@
 pipeline {
     agent any
 
-    stage('Clone repository') {
-        /* Let's make sure we have the repository cloned to our workspace */
+    stages {
+        stage('Clone repository') {
+            steps {
+                /* Let's make sure we have the repository cloned to our workspace */
+                checkout scm
+            }
+        }
 
-        checkout scm
-    }
-
-    stage('Build image') {
-        /* This builds the actual image; synonymous to
-         * docker build on the command line */
-
-        app = docker.build("webimage:latest")
+        stage('Build image') {
+            steps {
+                /* This builds the actual image; synonymous to
+                 * docker build on the command line */
+                script {
+                    app = docker.build("webimage:latest")
+                }
+            }
+        }
     }
 }
+
 
