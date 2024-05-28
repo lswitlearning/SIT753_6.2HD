@@ -18,7 +18,6 @@ pipeline {
                 }
             }
         }
-
                 stage('Run container') {
             steps {
                 /* This runs the built image with port mapping; synonymous to
@@ -28,11 +27,5 @@ pipeline {
                 }
             }
         }
-}
-
-
-
- 
     }
 }
-
