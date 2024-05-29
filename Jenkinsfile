@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+    environment{
+        DOCKERHUB_CREDENTIALS = credentials('lswitlearning-dockerhub')
+    }
     stages {
         stage('Clone repository') {
             steps {
@@ -52,17 +55,16 @@ pipeline {
                 }
             }
         }
-        stage('Push image') {
+        stage('Login') {
             steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'lswitlearning-dockerhub'){
-                // 推送镜像到 Docker Hub
-                app.push("${env.BUILD_NUMBER}")
-                app.push("latest")
-                    }
-                }
+                bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
+        stage('Push') {
+            steps {
+                bat 'docker push beatalam/webimage:latest'
 
+            }
+        }
     }
 }
