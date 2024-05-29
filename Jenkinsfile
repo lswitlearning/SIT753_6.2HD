@@ -40,8 +40,8 @@ pipeline {
                         withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
                             bat """
                                 ${scannerHome}\\bin\\sonar-scanner.bat ^
-                                -Dsonar.projectKey=my\\:task ^
-                                -Dsonar.projectName='My\\ task' ^
+                                -Dsonar.projectKey=my:task ^
+                                -Dsonar.projectName='My_task' ^
                                 -Dsonar.projectVersion=1.0 ^
                                 -Dsonar.sources=. ^
                                 -Dsonar.language=html ^
