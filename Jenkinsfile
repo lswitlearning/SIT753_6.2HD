@@ -37,7 +37,7 @@ pipeline {
         }
         stage('AWS test') {
             steps {
-                aws s3 ls
+                bat 'aws s3 ls'
             }
         }
     }
