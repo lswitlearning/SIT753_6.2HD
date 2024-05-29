@@ -35,10 +35,18 @@ pipeline {
                 bat "mvn -D clean test"
             }
         }
-        stage('AWS test') {
+
+        stage('Push to ECS staging') {
             steps {
                 withAWS(credentials: 'jenkins_aws', region:'ap-southeast-2'){
-                    bat "aws s3 ls"
+                    bat "aws ecs update-service --cluster ecs_cluster --service webserver_stage --force-new-deployment"
+                }
+            }
+        }
+        stage('Push to ECS production') {
+            steps {
+                withAWS(credentials: 'jenkins_aws', region:'ap-southeast-2'){
+                    bat "aws ecs update-service --cluster ecs_cluster --service webserver_prod_new --force-new-deployment"
                 }
             }
         }
