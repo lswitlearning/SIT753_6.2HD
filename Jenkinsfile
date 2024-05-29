@@ -46,7 +46,7 @@ pipeline {
                             -D sonar.language=html \
                             -D sonar.sourceEncoding=UTF-8 \
                             -D sonar.exclusions='**/*.java,**/*.js,**/*.css,**/*.ts,**/*.jsx,**/*.tsx'"
-                            -D sonar.login=sqp_797d4fef5fe5244be962f4c6e2c1eaedf2927a79
+                            -D sonar.login="sqp_797d4fef5fe5244be962f4c6e2c1eaedf2927a79"
                     }
                 }
             }
