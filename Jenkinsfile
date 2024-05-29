@@ -35,26 +35,6 @@ pipeline {
                 bat "mvn -D clean test"
             }
         }
-        stage('SonarQube Code Analysis') {
-            steps {
-                script {
-                    def scannerHome = tool name: 'SonarQube-Scan', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                    withSonarQubeEnv('SonarServer') {
-                            bat """
-                                ${scannerHome}\\bin\\sonar-scanner.bat ^
-                                -Dsonar.projectKey=my:task ^
-                                -Dsonar.projectName='My_task' ^
-                                -Dsonar.projectVersion=1.0 ^
-                                -Dsonar.sources=. ^
-                                -Dsonar.language=html ^
-                                -Dsonar.sourceEncoding=UTF-8 ^
-                                -Dsonar.exclusions=**/*.java,**/*.js,**/*.css,**/*.ts,**/*.jsx,**/*.tsx ^
-                                -Dsonar.login=%SONAR_TOKEN% ^
-                            """
-                    }
-                }
-            }
-        }
         stage('Push') {
             steps {
                 bat 'docker push beatalam/webimage:latest'
