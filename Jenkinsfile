@@ -56,7 +56,7 @@ pipeline {
 
             }
         }
-        //test
+        //Test
         stage('Push to ECS staging') {
             steps {
                 withAWS(credentials: 'jenkins_aws', region:'ap-southeast-2'){
