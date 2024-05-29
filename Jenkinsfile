@@ -32,20 +32,24 @@ pipeline {
                 bat "mvn -D clean test"
             }
         }
-        stage('SonarQube Code Analysis') {
+s       tage('SonarQube Code Analysis') {
             steps {
-                /* Run SonarQube analysis */
                 script {
                     def scannerHome = tool name: 'SonarQube-Scan', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                    withSonarQubeEnv('SonarQube-Scan') {
-                        sh "${scannerHome}/bin/sonar-scanner \
-                            -D sonar.projectKey=my:task \
-                            -D sonar.projectName='My task' \
-                            -D sonar.projectVersion=1.0 \
-                            -D sonar.sources=. \
-                            -D sonar.language=html \
-                            -D sonar.sourceEncoding=UTF-8 \
-                            -D sonar.exclusions='**/*.java,**/*.js,**/*.css,**/*.ts,**/*.jsx,**/*.tsx'"
+                    withSonarQubeEnv('Sonar_Token') {
+                        withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_TOKEN')]) {
+                            bat """
+                                ${scannerHome}\\bin\\sonar-scanner.bat ^
+                                -Dsonar.projectKey=my:task ^
+                                -Dsonar.projectName='My task' ^
+                                -Dsonar.projectVersion=1.0 ^
+                                -Dsonar.sources=. ^
+                                -Dsonar.language=html ^
+                                -Dsonar.sourceEncoding=UTF-8 ^
+                                -Dsonar.exclusions=**/*.java,**/*.js,**/*.css,**/*.ts,**/*.jsx,**/*.tsx ^
+                                -Dsonar.login=%SONAR_TOKEN%
+                            """
+                        }
                     }
                 }
             }
