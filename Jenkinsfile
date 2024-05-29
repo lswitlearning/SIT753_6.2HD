@@ -17,7 +17,7 @@ pipeline {
                 /* This builds the actual image; synonymous to
                  * docker build on the command line */
                 script {
-                    app = docker.build("webimage:latest")
+                    app = docker.build("beatalam/webimage:latest")
                 }
             }
         }
