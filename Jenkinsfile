@@ -35,16 +35,11 @@ pipeline {
                 bat "mvn -D clean test"
             }
         }
-        stage('Push') {
-            steps {
-                bat 'docker push beatalam/webimage:latest'
-
-            }
-        }
         stage('AWS test') {
             steps {
-                bat 'aws s3 ls'
-
+                withAWS(credentials: 'jenkins_aws', region: 'ap-southeast-2'){
+                    bat 'aws s3 ls'
+                }
             }
         }
     }
