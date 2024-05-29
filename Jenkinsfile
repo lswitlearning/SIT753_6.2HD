@@ -55,7 +55,7 @@ pipeline {
         stage('Push image') {
             steps {
                 script {
-                    docker.withRegistry('docker.io/beatalam/', 'lswitlearning-dockerhub'){
+                    docker.withRegistry('https://index.docker.io/v1/', 'lswitlearning-dockerhub'){
                 // 推送镜像到 Docker Hub
                 app.push("${env.BUILD_NUMBER}")
                 app.push("latest")
