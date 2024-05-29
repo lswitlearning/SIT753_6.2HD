@@ -1,0 +1,6 @@
+projectKey=Task6.1HD
+serverUrl=http://localhost:9000
+serverVersion=10.5.1.90531
+dashboardUrl=http://localhost:9000/dashboard?id=Task6.1HD
+ceTaskId=8249d88a-f287-4913-87a5-37b3bd75a253
+ceTaskUrl=http://localhost:9000/api/ce/task?id=8249d88a-f287-4913-87a5-37b3bd75a253
