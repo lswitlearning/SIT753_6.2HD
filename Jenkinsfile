@@ -36,8 +36,8 @@ pipeline {
             steps {
                 /* Run SonarQube analysis */
                 script {
-                    def scannerHome = tool name: 'Sonarqube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                    withSonarQubeEnv('Sonarqube') {
+                    def scannerHome = tool name: 'SonarQube-Scan', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                    withSonarQubeEnv('SonarQube-Scan') {
                         sh "${scannerHome}/bin/sonar-scanner \
                             -D sonar.projectKey=my:task \
                             -D sonar.projectName='My task' \
@@ -46,6 +46,7 @@ pipeline {
                             -D sonar.language=html \
                             -D sonar.sourceEncoding=UTF-8 \
                             -D sonar.exclusions='**/*.java,**/*.js,**/*.css,**/*.ts,**/*.jsx,**/*.tsx'"
+                            -D sonar.login=sqp_797d4fef5fe5244be962f4c6e2c1eaedf2927a79
                     }
                 }
             }
