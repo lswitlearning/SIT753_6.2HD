@@ -37,7 +37,6 @@ pipeline {
                 script {
                     def scannerHome = tool name: 'SonarQube-Scan', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                     withSonarQubeEnv('SonarServer') {
-                        withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
                             bat """
                                 ${scannerHome}\\bin\\sonar-scanner.bat ^
                                 -Dsonar.projectKey=my:task ^
@@ -48,9 +47,8 @@ pipeline {
                                 -Dsonar.sourceEncoding=UTF-8 ^
                                 -Dsonar.exclusions=**/*.java,**/*.js,**/*.css,**/*.ts,**/*.jsx,**/*.tsx ^
                                 -Dsonar.login=%SONAR_TOKEN% ^
-                                -X
                             """
-                        }
+                        
                     }
                 }
             }
