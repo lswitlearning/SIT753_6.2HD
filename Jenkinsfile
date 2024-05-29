@@ -41,7 +41,7 @@ pipeline {
                             bat """
                                 ${scannerHome}\\bin\\sonar-scanner.bat ^
                                 -Dsonar.projectKey=my:task ^
-                                -Dsonar.projectName='My task' ^
+                                -Dsonar.projectName='My\\ task' ^
                                 -Dsonar.projectVersion=1.0 ^
                                 -Dsonar.sources=. ^
                                 -Dsonar.language=html ^
