@@ -47,7 +47,8 @@ pipeline {
                                 -Dsonar.language=html ^
                                 -Dsonar.sourceEncoding=UTF-8 ^
                                 -Dsonar.exclusions=**/*.java,**/*.js,**/*.css,**/*.ts,**/*.jsx,**/*.tsx ^
-                                -Dsonar.login=%SONAR_TOKEN%
+                                -Dsonar.login=%SONAR_TOKEN% ^
+                                -X
                             """
                         }
                     }
