@@ -32,7 +32,7 @@ pipeline {
                 bat "mvn -D clean test"
             }
         }
-s       tage('SonarQube Code Analysis') {
+        stage('SonarQube Code Analysis') {
             steps {
                 script {
                     def scannerHome = tool name: 'SonarQube-Scan', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
