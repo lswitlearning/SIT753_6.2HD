@@ -39,9 +39,7 @@ pipeline {
         }
         stage('AWS test') {
             steps {
-                    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'jenkins_aws', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                            AWS("--region=ap-southeast-2 s3 ls")
-                        }
+                aws s3 ls
             }
         }
     }
