@@ -37,7 +37,9 @@ pipeline {
         }
         stage('AWS test') {
             steps {
-                bat "aws s3 ls"
+                withAWS(credentials: 'jenkins_aws', region:'ap-southeast-2'){
+                    bat "aws s3 ls"
+                }
             }
         }
     }
