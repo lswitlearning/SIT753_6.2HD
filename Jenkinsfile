@@ -1,3 +1,5 @@
+@Library('github.com/releaseworks/jenkinslib') _
+
 pipeline {
     agent any
 
@@ -37,9 +39,9 @@ pipeline {
         }
         stage('AWS test') {
             steps {
-                withAWS(credentials: 'jenkins_aws', region: 'ap-southeast-2'){
-                    bat 'aws s3 ls'
-                }
+                    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'jenkins_aws', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                            AWS("--region=ap-southeast-2 s3 ls")
+                        }
             }
         }
     }
